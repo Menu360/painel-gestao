@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.card {
+  background-color: rgba(65, 55, 38, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  padding: 2em;
+  width: 400px;
+  color: white;
+  text-align: center;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-google {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+}
