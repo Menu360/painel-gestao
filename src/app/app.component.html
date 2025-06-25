@@ -1,1 +1,4 @@
-<router-outlet />
+<app-sidebar *ngIf="!esconderSidebar"></app-sidebar>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
