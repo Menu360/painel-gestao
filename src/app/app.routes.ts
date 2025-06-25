@@ -9,5 +9,8 @@ export const routes: Routes = [
   { path: 'pedido', component: PedidoComponent },
   { path: 'cardapio', component: ProdutoComponent },
   { path: 'auth/callback', component: AuthCallbackComponent },
-  { path: '', redirectTo: 'pedido', pathMatch: 'full' }
+  { path: '', redirectTo: 'pedido', pathMatch: 'full' },
+  { path: 'produto/criar',
+    loadComponent: () => import('./pages/produto/formulario/formulario.component').then(m => m.FormularioComponent)
+  }
 ];

@@ -1,6 +1,12 @@
-<h2 class="titulo">
-  <i class="bi bi-book-fill icone-laranja"></i> Cardápio
-</h2>
+<div class="topo-lista">
+  <h2 class="titulo">
+    <i class="bi bi-book-fill icone-laranja"></i> Cardápio
+  </h2>
+  <button class="btn-criar-produto" (click)="navegarParaCriarProduto()">
+    <i class="bi bi-plus-circle-fill"></i> Criar Produto
+  </button>
+</div>
+
 <div class="cardapio-container">
   <div class="card-produto" *ngFor="let produto of products">
     <img [src]="produto.imagem" [alt]="produto.nome_produto" class="imagem-produto">

@@ -13,5 +13,9 @@ export class ProdutoService {
   listaProduto (): Observable<Produto[]>{
     return this.httpClient.get<Produto[]>('https://menu360-backend-develop.up.railway.app/produto/listar');
   }
+  criarProduto(produto: Produto): Observable<Produto> {
+  return this.httpClient.post<Produto>('https://menu360-backend-develop.up.railway.app/produto/criar', produto);
+}
+
 }
 

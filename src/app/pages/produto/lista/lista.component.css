@@ -1,21 +1,53 @@
+/* Header com título e botão no canto superior direito */
+.topo-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2rem 2rem 5rem; /* Mantém o margin-left de 5rem para alinhar com o sidebar */
+  position: relative;
+}
+
 .titulo {
   font-size: 1.8rem;
-  margin-bottom: 2rem;
   color: white;
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-left: 23rem;
+  margin: 0;
 }
 
+.btn-criar-produto {
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  right: 0; /* Fixa no canto direito */
+}
+
+.btn-criar-produto:hover {
+  background-color: #e65c00;
+}
+
+/* Container do cardápio mais próximo do sidebar */
 .cardapio-container {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: 20rem;
+  margin-left: 5rem; /* Alinha com o sidebar */
+  margin-right: 2rem;
 }
 
+/* Cards dos produtos */
 .card-produto {
   background-color: #2a2a2a;
   color: white;
@@ -87,4 +119,33 @@
 
 .icone-laranja {
   color: #ff6600;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1200px) {
+  .cardapio-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .topo-lista {
+    margin: 0 1rem 2rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .topo-lista {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .btn-criar-produto {
+    position: static;
+    align-self: flex-end;
+  }
+  
+  .cardapio-container {
+    justify-content: center;
+  }
 }
