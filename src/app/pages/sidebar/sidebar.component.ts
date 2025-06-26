@@ -8,7 +8,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  click() {
-    alert('clicou');
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('restauranteId');
+    window.location.href = '/login';
   }
 }
