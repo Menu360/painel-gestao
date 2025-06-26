@@ -1,13 +1,6 @@
 <div class="form-container">
   <h2>Criar Novo Produto</h2>
   <form [formGroup]="produtoForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="restaurante_id">ID do Restaurante</label>
-      <input id="restaurante_id" formControlName="restaurante_id" type="text" placeholder="Digite o ID do restaurante" />
-      <div *ngIf="produtoForm.get('restaurante_id')?.invalid && produtoForm.get('restaurante_id')?.touched" class="error">
-        ID do restaurante é obrigatório.
-      </div>
-    </div>
 
     <div class="form-group">
       <label for="nome_produto">Nome do Produto</label>

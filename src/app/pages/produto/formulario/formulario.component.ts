@@ -21,7 +21,6 @@ export class FormularioComponent implements OnInit {
     private router: Router
   ) {
     this.produtoForm = this.fb.group({
-      restaurante_id: ['', Validators.required],
       nome_produto: ['', [Validators.required, Validators.minLength(3)]],
       descricao: ['', [Validators.required, Validators.minLength(10)]],
       preco_atual: [0, [Validators.required, Validators.min(0.01)]],
@@ -32,24 +31,32 @@ export class FormularioComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    if (this.produtoForm.valid) {
-      const produto: Produto = {
-        ...this.produtoForm.value,
-        historico_precos: [{ preco: this.produtoForm.value.preco_atual, data_inicio: new Date(), data_fim: null }]
-      };
+  if (this.produtoForm.valid) {
+    const restauranteId = localStorage.getItem('restauranteId');
 
-      this.produtoService.criarProduto(produto).subscribe({
-        next: () => {
-          alert('Produto criado com sucesso!');
-          this.router.navigate(['/produto']);
-        },
-        error: (err) => {
-          console.error('Erro ao criar produto:', err);
-          alert('Erro ao criar produto. Tente novamente.');
-        }
-      });
-    }
+    const produto: Produto = {
+      ...this.produtoForm.value,
+      restaurante_id: restauranteId || '',
+      historico_precos: [{
+        preco: this.produtoForm.value.preco_atual,
+        data_inicio: new Date(),
+        data_fim: null
+      }]
+    };
+
+    this.produtoService.criarProduto(produto).subscribe({
+      next: () => {
+        alert('Produto criado com sucesso!');
+        this.router.navigate(['/produto']);
+      },
+      error: (err) => {
+        console.error('Erro ao criar produto:', err);
+        alert('Erro ao criar produto. Tente novamente.');
+      }
+    });
   }
+}
+
 
   cancelar(): void {
     this.router.navigate(['/produto']);

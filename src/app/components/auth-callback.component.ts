@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-auth-callback',
-  standalone: true,
-  template: `<p>Autenticando...</p>`
+  template: `<p>Redirecionando...</p>`,
 })
 export class AuthCallbackComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const token = params['token'];
+    if (isPlatformBrowser(this.platformId)) {
+      const token = this.route.snapshot.queryParamMap.get('token');
 
       if (token) {
-        localStorage.setItem('token', token); // ou sessionStorage
+        const payload = jwtDecode<{ restauranteId: string }>(token);
+        console.log('Payload:', payload);
+        localStorage.setItem('token', token);
+        localStorage.setItem('restauranteId', payload.restauranteId);
         this.router.navigate(['/pedido']);
-      } else {
-        this.router.navigate(['/login']);
       }
-    });
+    }
   }
 }

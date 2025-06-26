@@ -21,16 +21,6 @@ export class LoginComponent {
   constructor (private router: Router, protected service: LoginService) {}
 
   login() {
-  window.location.href = 'https://menu360-backend-production.up.railway.app/auth/google';
-}
-
-saveUserInfoFromToken(token: string) {
-  const payload = jwtDecode<TokenPayload>(token);
-
-  // Salvar no localStorage
-  localStorage.setItem('token', token);
-  localStorage.setItem('restauranteId', payload.restauranteId);
-  localStorage.setItem('nomeUsuario', payload.nome); // se quiser salvar mais coisas
-}
-
+    window.location.href = 'https://menu360-backend-production.up.railway.app/auth/google';
+  }
 }

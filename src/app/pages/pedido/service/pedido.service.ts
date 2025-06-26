@@ -8,10 +8,13 @@ import { Pedido } from '../models/pedido';
 })
 export class PedidoService {
 
+  private readonly baseUrl = 'https://menu360-backend-production.up.railway.app';
+
   constructor(protected httpClient: HttpClient) { }
 
-  listaPedido (): Observable<Pedido[]>{
-    return this.httpClient.get<Pedido[]>('https://menu360-backend-develop.up.railway.app/pedido');
+  listaPedido(): Observable<Pedido[]> {
+    const restauranteId = localStorage.getItem('restauranteId');
+    const url = `${this.baseUrl}/pedido?id_restaurante=${restauranteId}`;
+    return this.httpClient.get<Pedido[]>(url);
   }
 }
-
